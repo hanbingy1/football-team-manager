@@ -1,0 +1,4 @@
+CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT UNIQUE NOT NULL, password_hash TEXT NOT NULL, role TEXT NOT NULL);
+CREATE TABLE teams (id INTEGER PRIMARY KEY, name TEXT NOT NULL);
+CREATE TABLE team_users (team_id INTEGER NOT NULL, user_id INTEGER NOT NULL, PRIMARY KEY (team_id, user_id));
+CREATE TABLE team_data (team_id INTEGER NOT NULL, key TEXT NOT NULL, value TEXT NOT NULL, PRIMARY KEY (team_id, key));

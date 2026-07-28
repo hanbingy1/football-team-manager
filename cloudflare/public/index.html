@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>球队管理系统</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="login-overlay" class="modal">
+  <div class="modal-content">
+    <h3>账号登录</h3>
+    <label>用户名 <input type="text" id="login-username" autocomplete="username"></label>
+    <label>密码 <input type="password" id="login-password" autocomplete="current-password"></label>
+    <div id="login-error" class="login-error"></div>
+    <div class="modal-actions">
+      <button id="login-btn" class="btn primary">进入</button>
+    </div>
+  </div>
+</div>
+
+<header class="topbar">
+  <h1>⚽ 球队管理系统</h1>
+  <nav class="tabs">
+    <button class="tab-btn active" data-view="players">球员名单</button>
+    <button class="tab-btn" data-view="matches">赛程管理</button>
+    <button class="tab-btn" data-view="match-detail" style="display:none">比赛详情</button>
+    <button class="tab-btn" data-view="calendar">比赛日历</button>
+    <button class="tab-btn" data-view="stats">数据统计</button>
+    <button class="tab-btn" data-view="members" id="members-tab" style="display:none">成员管理</button>
+    <button class="tab-btn" id="change-password-btn" style="margin-left:auto">修改密码</button>
+    <button class="tab-btn" id="logout-btn">退出登录</button>
+  </nav>
+</header>
+
+<main id="app"></main>
+
+<!-- 球员编辑弹窗 -->
+<div id="player-modal" class="modal hidden">
+  <div class="modal-content">
+    <h3 id="player-modal-title">添加球员</h3>
+    <label>姓名 <input type="text" id="pf-name"></label>
+    <label>号码 <input type="number" id="pf-number" min="0" max="99"></label>
+    <label>位置
+      <input type="text" id="pf-position" list="position-options" placeholder="可任意填写，如：后卫">
+      <datalist id="position-options">
+        <option value="守门员">
+        <option value="后卫">
+        <option value="中场">
+        <option value="前锋">
+      </datalist>
+    </label>
+    <label>备注 <input type="text" id="pf-note"></label>
+    <div class="modal-actions">
+      <button id="player-save-btn" class="btn primary">保存</button>
+      <button id="player-cancel-btn" class="btn">取消</button>
+    </div>
+  </div>
+</div>
+
+<!-- 比赛编辑弹窗 -->
+<div id="match-modal" class="modal hidden">
+  <div class="modal-content">
+    <h3 id="match-modal-title">新建比赛</h3>
+    <label>日期 <input type="date" id="mf-date"></label>
+    <label>对手 <input type="text" id="mf-opponent" placeholder="可不填"></label>
+    <label>赛制（几人制）
+      <input type="number" id="mf-size" min="1" max="30" step="1" value="11">
+    </label>
+    <label>比分（可不填，赛后填写）
+      <div style="display:flex; align-items:center; gap:6px;">
+        <input type="number" id="mf-score-us" min="0" style="width:70px" placeholder="我方">
+        <span>:</span>
+        <input type="number" id="mf-score-them" min="0" style="width:70px" placeholder="对方">
+      </div>
+    </label>
+    <div class="modal-actions">
+      <button id="match-save-btn" class="btn primary">保存</button>
+      <button id="match-cancel-btn" class="btn">取消</button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
